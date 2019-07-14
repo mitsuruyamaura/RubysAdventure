@@ -122,6 +122,7 @@ public class RubyController : MonoBehaviour {
         anim.SetFloat("Look Y", lookDirection.y);
         anim.SetFloat("Speed", move.magnitude);
 
+        // 位置を更新し、移動処理をする
         Vector2 position = rb.position;
         position += move * speed * Time.deltaTime;
         rb.MovePosition(position);
@@ -144,8 +145,10 @@ public class RubyController : MonoBehaviour {
             isInvincible = true;
             invincibleTimer = timeInvincible;
         }
-        // currentHralthの最低値と最大値を設定し、それ以上にもそれ以下にもならないように制限する
+        // currentHralthの現在値を更新し、最低値と最大値を設定値かどうかをみて制限する
+        // 実質的な回復増減処理
         currentHealth = Mathf.Clamp(currentHealth + amount,0,maxHealth);
+        // HealthBarの表示を現在のライフに合わせて更新
         UIHealthBar.instance.SetValue(currentHealth / (float)maxHealth);
     }
 }
