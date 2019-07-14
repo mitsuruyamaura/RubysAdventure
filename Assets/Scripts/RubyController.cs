@@ -132,8 +132,6 @@ public class RubyController : MonoBehaviour {
     /// </summary>
     /// <param name="amount"></param>
     public void ChangeHealth(int amount) {
-        currentHealth += amount;
-        Debug.Log(currentHealth);
         if (amount < 0) {
             // 引数がマイナスならダメージ処理
             if (isInvincible) {
@@ -148,8 +146,6 @@ public class RubyController : MonoBehaviour {
         }
         // currentHralthの最低値と最大値を設定し、それ以上にもそれ以下にもならないように制限する
         currentHealth = Mathf.Clamp(currentHealth + amount,0,maxHealth);
-        Debug.Log(currentHealth);
         UIHealthBar.instance.SetValue(currentHealth / (float)maxHealth);
-        Debug.Log(currentHealth / (float)maxHealth);
     }
 }
